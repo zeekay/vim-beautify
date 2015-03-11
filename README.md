@@ -8,7 +8,7 @@ Adds filetype specific `:Beautify` command which beautifies the current buffer.
 - CSS
   - css-beautify
 - HTML, XML
-  - html-beautify _default_
+  - html-beautify _(default)_
   - tidy
 - Java
   - astyle
@@ -17,13 +17,13 @@ Adds filetype specific `:Beautify` command which beautifies the current buffer.
 - JSON
   - js-beautify
   - json.tool
-  - node _default_
+  - node _(default)_
   - uglifyjs
 - Go
   - gofmt
 - Python
-  - autopep8 _default_
-  - docformatter _default_
+  - autopep8 _(default)_
+  - docformatter _(default)_
 
 ## Usage
 You can beautify an entire buffer or range using `:Beautify`. You can pass an
