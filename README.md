@@ -1,5 +1,5 @@
 # vim-beautify
-Why live with ugly code? Adds a filetype-specific `:Beautify` command which
+Why live with ugly code? Adds filetype specific `:Beautify` command which
 beautifies buffers or ranges.
 
 ## Built-in support
@@ -26,10 +26,13 @@ beautifies buffers or ranges.
   - docformatter _(default)_
 
 ## Usage
-You can beautify an entire buffer or range using `:Beautify`. You can pass an
-optional filetype or beautifier name to trigger a specificy type of
-beautification, if you are editing a Markdown file and want to beautify a JSON
-code block, for instance: `:Beautify json`.
+You can beautify a buffer or range using `:Beautify`. The appropriate beautifier
+(or beautifiers) will be run according to detected filetype.
+
+An optional filetype or beautifier name may also be specified to trigger a
+specific beautifier regardless of detected filetype. For instance, to beautify a
+block of JSON inside of a Markdown file you can simply select a range and call
+`:Beautify json`.
 
 ## API
 You can customize the existing beautifiers, arguments used or define new
