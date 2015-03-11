@@ -3,12 +3,14 @@ func! beautifiers#defaults#init()
         let g:beautify = {}
     endif
 
-    " Beautifier definitions
-    if !exists('g:beautify.definitions')
-        let g:beautify.definitions = {}
-    endif
+    for k in ['beautifiers', 'definitions', 'filetypes']
+        if !has_key(g:beautify, k)
+            let g:beautify[k] = {}
+        endif
+    endfor
 
-    let definitions = {
+    " Default beautifier definitions
+    let beautifier_defs = {
         \ 'astyle': {
             \ 'filetypes': ['c', 'cs', 'cpp', 'java'],
             \ 'bin':       'astyle',
@@ -54,6 +56,7 @@ func! beautifiers#defaults#init()
         \ 'autopep8': {
             \ 'filetypes': ['python'],
             \ 'bin':       'autopep8',
+            \ 'args':      '--aggressive --aggressive',
             \ 'install':   function('beautifiers#autopep8#install'),
             \ 'run':       function('beautifiers#autopep8#run'),
         \ },
@@ -77,17 +80,31 @@ func! beautifiers#defaults#init()
         \ },
     \ }
 
-    for k in keys(definitions)
-        if !has_key(g:beautify.definitions, k)
-            let g:beautify.definitions[k] = definitions[k]
+    " Overrides for default beautifier per filetype
+    let overrides = {
+        \ 'html':       ['html-beautify'],
+        \ 'javascript': ['js-beautify'],
+        \ 'json':       ['node'],
+        \ 'python':     ['autopep8', 'docformatter'],
+    \ }
+
+    " Update definitions with defaults
+    for [name, def] in items(beautifier_defs)
+        " No definition globally, add default
+        if !has_key(g:beautify.definitions, name)
+            let g:beautify.definitions[name] = def
+            continue
         endif
+
+        " Update existing definition with any missing values
+        for [k,v] in items(def)
+            if !has_key(g:beautify.definitions[name], k)
+                let g:beautify.definitions[name][k] = v
+            endif
+        endfor
     endfor
 
     " Create a map of all known filetype -> beautifiers
-    if !exists('g:beautify.filetypes')
-        let g:beautify.filetypes = {}
-    endif
-
     for [name, definition] in items(g:beautify.definitions)
         for ft in definition.filetypes
             if !has_key(g:beautify.filetypes, ft)
@@ -98,30 +115,19 @@ func! beautifiers#defaults#init()
         endfor
     endfor
 
-    " Which beautifiers to use by default for a given language
-    if !exists('g:beautify.beautifiers')
-        let g:beautify.beautifiers = {}
-    endif
-
-    " Default to first defined beautifier for filetype
+    " Which beautifiers to use by default for a given language.
     let beautifiers = {}
     for [k, v] in items(g:beautify.filetypes)
+        " Use first defined beautifier by default
         let beautifiers[k] = v[0]
     endfor
 
-    " Override defaults
-    let override = {
-        \ 'html':       ['html-beautify'],
-        \ 'javascript': ['js-beautify'],
-        \ 'json':       ['node'],
-        \ 'python':     ['autopep8', 'docformatter'],
-    \ }
-
-    for [k, v] in items(override)
+    " Override defaults per filetype in a few cases
+    for [k, v] in items(overrides)
         let beautifiers[k] = v
     endfor
 
-    " Update global beautifiers
+    " Update global per-filetype preferences
     for k in keys(beautifiers)
         if !has_key(g:beautify.beautifiers, k)
             let g:beautify.beautifiers[k] = beautifiers[k]

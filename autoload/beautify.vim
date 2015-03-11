@@ -154,6 +154,13 @@ func! beautify#run(opts)
             endif
         endif
 
+        " Pass along any defined args
+        if has_key(beautifier, 'args')
+            let a:opts.args = beautifier.args
+        else
+            let a:opts.args = ''
+        endif
+
         call beautifier.run(a:opts)
     endfor
 

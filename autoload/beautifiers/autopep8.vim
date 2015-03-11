@@ -7,5 +7,5 @@ func! beautifiers#autopep8#install()
 endf
 
 func! beautifiers#autopep8#run(opts)
-    call beautify#system('autopep8 --aggressive --aggressive -i '.a:opts.input)
+    call beautify#system('autopep8 '.a:opts.args.' --in-place '.a:opts.input)
 endf
