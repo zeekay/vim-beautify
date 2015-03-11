@@ -39,6 +39,12 @@ func! beautifiers#defaults#init()
             \ 'install':   function('beautifiers#jsbeautify#install'),
             \ 'run':       function('beautifiers#jsbeautify#run'),
         \ },
+        \ 'node': {
+            \ 'filetypes': ['json'],
+            \ 'bin':       'node',
+            \ 'install':   function('beautifiers#node#install'),
+            \ 'run':       function('beautifiers#node#run'),
+        \},
         \ 'uglifyjs': {
             \ 'filetypes': ['javascript', 'json'],
             \ 'bin':       'uglifyjs',
@@ -107,7 +113,7 @@ func! beautifiers#defaults#init()
     let override = {
         \ 'html':       ['html-beautify'],
         \ 'javascript': ['js-beautify'],
-        \ 'json':       ['uglifyjs'],
+        \ 'json':       ['node'],
         \ 'python':     ['autopep8', 'docformatter'],
     \ }
 
