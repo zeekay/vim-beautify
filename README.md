@@ -1,6 +1,6 @@
 # vim-beautify
-
-Adds filetype specific `:Beautify` command which beautifies the current buffer.
+Why live with ugly code? Adds a filetype-specific `:Beautify` command which
+beautifies buffers or ranges.
 
 ## Built-in support
 - C, C++
