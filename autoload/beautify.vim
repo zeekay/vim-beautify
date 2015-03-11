@@ -114,14 +114,17 @@ func! beautify#command(count, first, last, ...) range
     " Disable autocommands while beautifiers are running! Otherwise madness.
     let oldei = &eventignore
     let &eventignore = 'all'
-    call beautify#run({
-        \ 'beautifiers':  beautifiers,
-        \ 'filetype':     filetype,
-        \ 'firstline':    a:first,
-        \ 'lastline':     a:last,
-        \ 'count':        a:count,
-    \ })
-    let &eventignore = oldei
+    try
+        call beautify#run({
+            \ 'beautifiers':  beautifiers,
+            \ 'filetype':     filetype,
+            \ 'firstline':    a:first,
+            \ 'lastline':     a:last,
+            \ 'count':        a:count,
+        \ })
+    finally
+        let &eventignore = oldei
+    endtry
 endf
 
 func! beautify#run(opts)
