@@ -149,7 +149,7 @@ func! beautify#run(opts)
             endif
 
             " Try to install beautifier
-            if !beautifer.install()
+            if !beautifier.install()
                 throw 'Please manually install '.beautifier.bin.' to beautify '.a:opts.filetype
             endif
         endif
