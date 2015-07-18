@@ -1,13 +1,13 @@
 " Slightly safer system() that will report errors nicely
 func! beautify#system(cmd)
-    let err = system(a:cmd)
+    silent let err = system(a:cmd)
     if err != ""
         echo '!'.a:cmd
         for line in split(err, '\n')
             echo line
         endfor
         let bin = split(a:cmd, ' ')[0]
-        throw bin.' failed to execute'
+        throw bin.' failed to execute: '.err
     endif
 endf
 

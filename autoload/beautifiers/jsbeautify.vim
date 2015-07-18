@@ -3,5 +3,7 @@ func! beautifiers#jsbeautify#install()
 endf
 
 func! beautifiers#jsbeautify#run(opts)
-    call beautify#system('js-beautify -k -x --brace-style=collapse --indent-size='.&shiftwidth.' -r -f '.a:opts.input)
+    let cmd = 'js-beautify'
+    let args = '-q -k -x -r --brace-style=collapse --indent-size='.&shiftwidth.' -f '.a:opts.input
+    call beautify#system(cmd.' '.args)
 endf
