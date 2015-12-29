@@ -30,7 +30,7 @@ func! beautifiers#defaults#init()
             \ 'run':       function('beautifiers#cssbeautify#run'),
         \ },
         \ 'html-beautify': {
-            \ 'filetypes': ['html', 'xml'],
+            \ 'filetypes': ['html', 'xml', 'html.handlebars'],
             \ 'bin':       'html-beautify',
             \ 'install':   function('beautifiers#htmlbeautify#install'),
             \ 'run':       function('beautifiers#htmlbeautify#run'),
