@@ -3,7 +3,11 @@ func! beautifiers#tidy#install()
 endf
 
 func! beautifiers#tidy#run(opts)
+    let cmd = 'tidy'
     let args = [
+        \ '-quiet',
+        \ '-indent',
+        \ '-modify',
         \ '-wrap 0',
         \ '--preserve-entities true',
         \ '--show-warnings false',
@@ -26,6 +30,8 @@ func! beautifiers#tidy#run(opts)
         call add(args, '--show-body-only true')
     endif
 
-    silent! exe '%!tidy -q -i '.join(args, ' ')
-    redraw!
+    call add(args, '-output '.a:opts.output)
+    call add(args, a:opts.input)
+
+    call beautify#system(cmd.' '.join(args))
 endf
