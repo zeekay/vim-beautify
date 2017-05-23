@@ -165,7 +165,9 @@ func! beautify#run(opts)
     endfor
 
     " Read in modified file
-    call beautify#read_tmpfile(a:opts)
+    if exists('a:opts.inplace') && a.opts.inplace
+        call beautify#read_tmpfile(a:opts)
+    endif
 
     " Force a redraw!
     silent redraw!

@@ -78,6 +78,13 @@ func! beautifiers#defaults#init()
             \ 'install':   function('beautifiers#tidy#install'),
             \ 'run':       function('beautifiers#tidy#run'),
         \ },
+        \ 'tsfmt': {
+            \ 'filetypes': ['typescript'],
+            \ 'bin':       'tsfmt',
+            \ 'install':   function('beautifiers#tsfmt#install'),
+            \ 'run':       function('beautifiers#tsfmt#run'),
+            \ 'inplace':   1,
+        \ },
     \ }
 
     " Overrides for default beautifier per filetype
