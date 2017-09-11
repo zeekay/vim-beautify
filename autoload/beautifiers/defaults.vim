@@ -41,6 +41,12 @@ func! beautifiers#defaults#init()
             \ 'install':   function('beautifiers#jsbeautify#install'),
             \ 'run':       function('beautifiers#jsbeautify#run'),
         \ },
+        \ 'prettier': {
+            \ 'filetypes': ['javascript', 'json'],
+            \ 'bin':       'prettier',
+            \ 'install':   function('beautifiers#prettier#install'),
+            \ 'run':       function('beautifiers#prettier#run'),
+        \ },
         \ 'node': {
             \ 'filetypes': ['json'],
             \ 'bin':       'node',
@@ -90,7 +96,7 @@ func! beautifiers#defaults#init()
     " Overrides for default beautifier per filetype
     let overrides = {
         \ 'html':       ['html-beautify'],
-        \ 'javascript': ['js-beautify'],
+        \ 'javascript': ['prettier'],
         \ 'json':       ['node'],
         \ 'python':     ['autopep8', 'docformatter'],
     \ }
