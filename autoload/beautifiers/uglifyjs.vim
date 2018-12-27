@@ -1,4 +1,5 @@
 func! beautifiers#uglifyjs#install()
+    echoerr 'Please install UglifyJS (https://github.com/mishoo/UglifyJS2): npm install -g uglify-js'
 endf
 
 func! beautifiers#uglifyjs#run(opts)
