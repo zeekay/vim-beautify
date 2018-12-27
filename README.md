@@ -40,7 +40,7 @@ beautifiers:
 
 ```vim
 let g:beautify = {
-    \ "beauifiers": {
+    \ "beautifiers": {
         \ "python": ["autopep8", "docformatter"],
     \ },
     \ "definitions": {
