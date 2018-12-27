@@ -56,6 +56,7 @@ func! beautifiers#defaults#init()
         \ 'uglifyjs': {
             \ 'filetypes': ['javascript', 'json'],
             \ 'bin':       'uglifyjs',
+            \ 'args':      '-b indent_level=2,quote_keys=true',
             \ 'install':   function('beautifiers#uglifyjs#install'),
             \ 'run':       function('beautifiers#uglifyjs#run'),
         \},
@@ -110,9 +111,9 @@ func! beautifiers#defaults#init()
         endif
 
         " Update existing definition with any missing values
-        for [k,v] in items(def)
+        for [k,V] in items(def)
             if !has_key(g:beautify.definitions[name], k)
-                let g:beautify.definitions[name][k] = v
+                let g:beautify.definitions[name][k] = V
             endif
         endfor
     endfor
