@@ -6,5 +6,5 @@ let s:json = expand('<sfile>:p:h:h:h').'/prettier.config.js'
 
 func! beautifiers#prettier#run(opts)
     let cmd = 'prettier'
-    exe '%!'.cmd.' --config='.s:json.' --tab-width='.&shiftwidth.' '.a:opts.input
+    exe '%!'.cmd.' --parser=babylon --config='.s:json.' --tab-width='.&shiftwidth.' '.a:opts.input
 endf
