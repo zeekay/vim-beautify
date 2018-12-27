@@ -2,7 +2,7 @@ func! beautifiers#uglifyjs#install()
 endf
 
 func! beautifiers#uglifyjs#run(opts)
-    let args    = '-b indent-level=2,quote-keys=true'
+    let args    = '-b indent_level=2,quote_keys=true'
     let tmpfile = a:opts.tmpfile
 
     " Parse a single expression, rather than a program (for parsing JSON)
